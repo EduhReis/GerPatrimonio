@@ -5,8 +5,20 @@
 
 
 
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 > [!NOTE]
 > Passos para realizar esse projeto:
+
+
+
+
+
+
+
 
 
 
@@ -15,6 +27,13 @@
 - [ ] Criar uma Base de dados (Base local, ou usando o processamento do pc como o SQLite)
 - [ ] Criar um Front end com as tecnologias utilizadas e passo-a-passo para utilizar
 - [ ] Criar um vídeo executando o protótipo final
+
+
+
+
+
+
+
 
 
 1. Padrões arquiteturais que são necessários:
@@ -33,6 +52,14 @@
 4. Documentação:
    - Ao final da prototipação, realizar uma documentação de tudo que foi feito, ensinando o usuário que ver o repositório a instalar e rodar.
   
+
+
+
+
+
+
+
+
 
 
 Bom Projeto/Task.
