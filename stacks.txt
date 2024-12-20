@@ -1,0 +1,19 @@
+Backend:
+
+Linguagem:
+Python
+
+FrameWork:
+Flask
+
+Frontend:
+
+Linguagem:
+Javscript
+
+FrameWorks:
+Bootstrap
+
+Banco de dados:
+SQLite,
+Postgres
