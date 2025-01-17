@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="lS9z6ADfy6HLij0DKCUR" name="Patrimonio">
-        <mxGraphModel dx="673" dy="549" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="806" dy="599" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -258,25 +258,25 @@
                 <mxCell id="75" value="1,1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="695" y="250" width="40" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="76" value="" style="endArrow=none;html=1;startArrow=oval;startFill=0;" edge="1" parent="1">
+                <mxCell id="76" value="" style="endArrow=none;html=1;startArrow=oval;startFill=0;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="40" y="453.82" as="sourcePoint"/>
                         <mxPoint x="10" y="453.82" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="77" value="status" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-                    <mxGeometry x="40" y="440" width="60" height="30" as="geometry"/>
+                <mxCell id="77" value="status" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry y="440" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="78" value="FK_id_patrimonio" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;container=0;" vertex="1" parent="1">
+                <mxCell id="78" value="FK_id_patrimonio" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;container=0;" parent="1" vertex="1">
                     <mxGeometry x="485" y="410" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="79" value="" style="endArrow=none;html=1;startArrow=oval;startFill=0;" edge="1" parent="1">
+                <mxCell id="79" value="" style="endArrow=none;html=1;startArrow=oval;startFill=0;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="479.9999999999998" y="423.82" as="sourcePoint"/>
                         <mxPoint x="449.9999999999998" y="423.82" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="80" value="data_entrada" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                <mxCell id="80" value="data_entrada" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="270" y="680" width="90" height="30" as="geometry"/>
                 </mxCell>
             </root>
