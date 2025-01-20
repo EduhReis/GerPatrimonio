@@ -1,0 +1,24 @@
+Definição de dupla 
+
+Banco de dados - Eder e Higor
+
+Backend - Eduardo e Kaue
+
+Cronograma 
+
+Semana 1  20/01 - 24/01  - Banco de Dados - Criação das tabelas principais.
+
+Backend inicial - Retornar em formato de mensagem que o banco foi conectado. 
+
+
+Semana 2 - 27/01 - 31/01 - Banco de dados - Pesquisa sobre SEED de banco com python - Fazer as inserções de dados no SEED 
+
+Backend - Fazer a leitura dos dados das tabelas.
+
+
+Semana 3 - 03/02 - 07/02 - CRUD com o banco de dados - Patrimônio, Funcionário, (Implementar o CRUD com TDD) padrão AAA (Arrange, Act, Assert) 
+
+https://www.youtube.com/watch?v=CwaHM-KLKC8
+
+
+Semana 4 - 10/02 - 14/02 - Se caso a semana 3 for concluída CRUD para as demais tabelas. Se não continuar a atividade da semana 3.
