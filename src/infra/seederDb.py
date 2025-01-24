@@ -1,7 +1,7 @@
 import sqlite3
 
 # Conectar ao banco de dados ou criar um novo
-conexao = sqlite3.connect('gerarpatrimonio.db')
+conexao = sqlite3.connect('src/infra/gerPtrimonio.db')
 
 cursor = conexao.cursor()
 # Criar a tabela patrimonio
