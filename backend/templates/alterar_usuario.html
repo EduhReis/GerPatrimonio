@@ -8,6 +8,6 @@
         <input type="text" class="form-control" id="username" name="username" required>
     </div>
     <button type="submit" class="btn btn-primary">Alterar</button>
-    <a href="{{ url_for('main.listagem') }}" class="btn btn-secondary">Voltar</a>
+    <a href="{{ url_for('main.listagem', username=current_user.username) }}" class="btn btn-secondary">Voltar</a>
 </form>
 {% endblock %}

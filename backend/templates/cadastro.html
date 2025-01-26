@@ -2,7 +2,7 @@
 
 {% block content %}
 <h2>Cadastro de Patrimônio</h2>
-<form method="POST" action="{{ url_for('main.cadastro_modal') }}">
+<form method="POST" action="{{ url_for('main.cadastro', username=current_user.username) }}">
     <div class="mb-3">
         <label for="nome" class="form-label">Nome</label>
         <input type="text" class="form-control" id="nome" name="nome" required>

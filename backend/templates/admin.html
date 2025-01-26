@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Administração de Usuários</h2>
+<form method="POST" action="{{ url_for('auth.admin') }}">
+    <div class="mb-3">
+        <label for="username" class="form-label">Nome de Usuário</label>
+        <input type="text" class="form-control" id="username" name="username" required>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Senha</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Criar Usuário</button>
+</form>
+
+<h3 class="mt-4">Usuários Existentes</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome de Usuário</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ 'Ativo' if user.is_active else 'Inativo' }}</td>
+            <td>
+                <form method="POST" action="{{ url_for('auth.delete_user', id=user.id) }}" style="display:inline;">
+                    <button type="submit" class="btn btn-danger">Deletar</button>
+                </form>
+                {% if user.is_active %}
+                <form method="POST" action="{{ url_for('auth.deactivate_user', id=user.id) }}" style="display:inline;">
+                    <button type="submit" class="btn btn-warning">Desativar</button>
+                </form>
+                {% else %}
+                <form method="POST" action="{{ url_for('auth.activate_user', id=user.id) }}" style="display:inline;">
+                    <button type="submit" class="btn btn-success">Ativar</button>
+                </form>
+                {% endif %}
+                <a href="{{ url_for('auth.edit_user', id=user.id) }}" class="btn btn-info">Editar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

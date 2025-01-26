@@ -29,25 +29,6 @@ CREATE TABLE IF NOT EXISTS funcionario (
 )
 ''')
 
-# Inserir dados iniciais na tabela patrimonio
-cursor.executemany('''
-INSERT INTO patrimonio (nome, categoria, status)
-VALUES (?, ?, ?)
-''', [
-    ('Computador', 'Eletrônico', 'Em uso'),
-    ('Impressora', 'Eletrônico', 'Manutenção'),
-    ('Mesa de Escritório', 'Mobiliário', 'Em uso')
-])
-
-# Inserir dados iniciais na tabela funcionario
-cursor.executemany('''
-INSERT INTO funcionario (nome, cpf, cargo, telefone)
-VALUES (?, ?, ?, ?)
-''', [
-    ('João Silva', '12345678901', 'Técnico', '11999999999'),
-    ('Maria Oliveira', '98765432100', 'Gerente', '21988888888'),
-    ('Carlos Souza', '45612378900', 'Assistente', '31977777777')
-])
 
 
 

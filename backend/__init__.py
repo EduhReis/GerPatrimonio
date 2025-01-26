@@ -2,6 +2,7 @@ import os
 from flask import Flask
 from flask_login import LoginManager
 from .models import db, User
+from flask_login import current_user
 
 def create_app():
     app = Flask(__name__)
@@ -17,7 +18,10 @@ def create_app():
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
-
+    @app.context_processor
+    def inject_user():
+        return dict(current_user=current_user)
+    
     from .routes import register_routes
     register_routes(app)
 

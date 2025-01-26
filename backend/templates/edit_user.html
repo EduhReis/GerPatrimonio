@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Editar Usuário</h2>
+<form method="POST" action="{{ url_for('auth.edit_user', id=user.id) }}">
+    <div class="mb-3">
+        <label for="username" class="form-label">Nome de Usuário</label>
+        <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Nova Senha (deixe em branco para manter a senha atual)</label>
+        <input type="password" class="form-control" id="password" name="password">
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a href="{{ url_for('auth.admin') }}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

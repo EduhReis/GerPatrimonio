@@ -20,8 +20,8 @@
             <td>{{ patrimonio.categoria }}</td>
             <td>{{ patrimonio.status }}</td>
             <td>
-                <a href="{{ url_for('main.editar', id=patrimonio.id) }}" class="btn btn-warning">Editar</a>
-                <form method="POST" action="{{ url_for('main.apagar', id=patrimonio.id) }}" style="display:inline;">
+                <a href="{{ url_for('main.editar', username=current_user.username, id=patrimonio.id) }}" class="btn btn-warning">Editar</a>
+                <form method="POST" action="{{ url_for('main.apagar', username=current_user.username, id=patrimonio.id) }}" style="display:inline;">
                     <button type="submit" class="btn btn-danger">Apagar</button>
                 </form>
             </td>
@@ -38,7 +38,7 @@
                 <h5 class="modal-title" id="cadastroModalLabel">Cadastrar Patrimônio</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" action="{{ url_for('main.cadastro') }}">
+            <form method="POST" action="{{ url_for('main.cadastro_modal', username=current_user.username) }}">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome</label>

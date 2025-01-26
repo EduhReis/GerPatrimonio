@@ -2,7 +2,7 @@
 
 {% block content %}
 <h2>Editar Patrimônio</h2>
-<form method="POST" action="{{ url_for('main.editar', id=patrimonio.id) }}">
+<form method="POST" action="{{ url_for('main.editar', username=current_user.username, id=patrimonio.id) }}">
     <div class="mb-3">
         <label for="nome" class="form-label">Nome</label>
         <input type="text" class="form-control" id="nome" name="nome" value="{{ patrimonio.nome }}" required>
