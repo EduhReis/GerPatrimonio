@@ -1,0 +1,170 @@
+/* Geral */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f3f4f6;
+    margin: 0;
+    padding: 0;
+    color: #374151;
+    line-height: 1.6;
+}
+
+h1, h2 {
+    color: #1f2937;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #1f2937;
+    color: #f9fafb;
+    padding: 1rem 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+/* Container Principal */
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Formulários */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+form input, form select {
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f9fafb;
+    transition: all 0.2s;
+}
+
+form input:focus, form select:focus {
+    outline: none;
+    border-color: #2563eb;
+    background-color: #ffffff;
+    box-shadow: 0 0 4px rgba(37, 99, 235, 0.5);
+}
+
+form button {
+    background-color: #2563eb;
+    color: #ffffff;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+form button:hover {
+    background-color: #1e40af;
+    transform: translateY(-2px);
+}
+
+form button:active {
+    transform: translateY(0);
+}
+
+/* Tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    border: 1px solid #d1d5db;
+}
+
+table th, table td {
+    text-align: left;
+    padding: 0.75rem;
+    border: 1px solid #e5e7eb;
+}
+
+table th {
+    background-color: #f3f4f6;
+    color: #1f2937;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9fafb;
+}
+
+table tr:hover {
+    background-color: #e5e7eb;
+}
+
+/* Botões de Ação */
+button.action-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+button.action-btn.edit {
+    background-color: #f59e0b;
+    color: white;
+}
+
+button.action-btn.edit:hover {
+    background-color: #d97706;
+}
+
+button.action-btn.delete {
+    background-color: #ef4444;
+    color: white;
+}
+
+button.action-btn.delete:hover {
+    background-color: #b91c1c;
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #1f2937;
+    color: #f3f4f6;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    table th, table td {
+        font-size: 0.9rem;
+    }
+
+    form input, form button {
+        font-size: 1rem;
+    }
+}

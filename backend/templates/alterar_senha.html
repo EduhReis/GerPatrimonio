@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Alterar Senha</h2>
+<form method="POST" action="{{ url_for('auth.alterar_senha') }}">
+    <div class="mb-3">
+        <label for="senha_atual" class="form-label">Senha Atual</label>
+        <input type="password" class="form-control" id="senha_atual" name="senha_atual" required>
+    </div>
+    <div class="mb-3">
+        <label for="nova_senha" class="form-label">Nova Senha</label>
+        <input type="password" class="form-control" id="nova_senha" name="nova_senha" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Alterar</button>
+    <a href="{{ url_for('main.listagem') }}" class="btn btn-secondary">Voltar</a>
+</form>
+{% endblock %}

@@ -1,7 +1,9 @@
 import sqlite3
+import os
 
 # Conectar ao banco de dados ou criar um novo
-conexao = sqlite3.connect('src/infra/gerPtrimonio.db')
+db_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../infra/gerPtrimonio.db'))
+conexao = sqlite3.connect(db_path)
 
 cursor = conexao.cursor()
 # Criar a tabela patrimonio
