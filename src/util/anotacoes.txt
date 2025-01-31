@@ -1,0 +1,8 @@
+- Implementar campo de patrimonio_ID
+- Ajuste no D do crud (não excluir permanentemente)
+- Criar a coluna no patrimonio (ativo)
+- Criar os demais CRUD  
+- Alterar a tela de admin para funcionario
+- Limitar o nivel de acesso pelo cargo ( abaixo de supervisor, somente leitura)
+- Crira tebala nova de categoria
+- Implementar Dockerfile.
