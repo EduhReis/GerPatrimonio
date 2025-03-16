@@ -11,6 +11,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(128), nullable=False)
     is_admin = db.Column(db.Boolean, default=False)
     active = db.Column(db.Boolean, default=True)
+    cargo = db.Column(db.String(50), nullable=False)  # Novo campo
 
     def set_password(self, password):
         self.password = bcrypt.generate_password_hash(password).decode('utf-8')
@@ -33,6 +34,7 @@ class Patrimonio(db.Model):
     nome = db.Column(db.String(50), nullable=False)
     categoria = db.Column(db.String(20))
     status = db.Column(db.String(20))
+    versao = db.Column(db.Integer, nullable=False, default=1)  # Novo campo de versão
     funcionario_id = db.Column(db.Integer, db.ForeignKey('funcionario.id'), nullable=True)
     funcionario = db.relationship('Funcionario', back_populates='patrimonios')
 

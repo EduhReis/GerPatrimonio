@@ -15,13 +15,9 @@
 
 1. Padrões arquiteturais que são necessários:
    - MVC
-   - CAMADAS
-   - DTOs
-   - INTERFACE
    - REPOSITORIES 
 2. Padrões de Boas práticas:
    - CLEAN CODE
-   - TDD
    - DESIGN PATTERN (Esse aqui tem que estudar sobre Patterns pois é legal explicar o porque foi selecionado o Pattern)
 3. Estrutura de Banco de dados:
    - ER (Entidade relacionamento)
@@ -134,6 +130,7 @@ GerPatrimonio/
 - **Autenticação:** Login e logout de usuários.
 - **Administração de Usuários:** Cadastro, edição, ativação, desativação e exclusão de usuários.
 - **Gerenciamento de Patrimônios:** Cadastro, edição, listagem e exclusão de patrimônios.
+- **Controle de Acesso:** Apenas usuários com cargos de "Admin" ou "Supervisor" podem criar, editar ou apagar patrimônios. Usuários com cargos inferiores têm acesso restrito a essas funcionalidades.
 
 ### Rotas Principais
 

@@ -9,7 +9,7 @@ with app.app_context():
     db.create_all()
 
     # Criar usuário admin
-    admin = User(username='admin', is_admin=True)
+    admin = User(username='admin', is_admin=True, cargo='Admin')
     admin.set_password('admin')
     db.session.add(admin)
 

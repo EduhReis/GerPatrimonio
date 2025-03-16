@@ -1,52 +1,121 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Administração de Usuários</h2>
-<form method="POST" action="{{ url_for('auth.admin') }}">
-    <div class="mb-3">
-        <label for="username" class="form-label">Nome de Usuário</label>
-        <input type="text" class="form-control" id="username" name="username" required>
-    </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">Senha</label>
-        <input type="password" class="form-control" id="password" name="password" required>
-    </div>
-    <button type="submit" class="btn btn-primary">Criar Usuário</button>
-</form>
+<div class="container py-5">
+    
+    <!-- Header com logo e título -->
+    <header class="d-flex justify-content-between align-items-center bg-white shadow rounded p-4 mb-4">
+        <div class="d-flex align-items-center gap-3">
+            <img src="{{ url_for('static', filename='img/propriedade.png') }}" alt="Logo" class="img-fluid" style="height: 56px; width: 56px;" />
+            <h1 class="h4 mb-0">Administração de Funcionários</h1>
+        </div>
+       
+    </header>
 
-<h3 class="mt-4">Usuários Existentes</h3>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome de Usuário</th>
-            <th>Status</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for user in users %}
-        <tr>
-            <td>{{ user.id }}</td>
-            <td>{{ user.username }}</td>
-            <td>{{ 'Ativo' if user.is_active else 'Inativo' }}</td>
-            <td>
-                <form method="POST" action="{{ url_for('auth.delete_user', id=user.id) }}" style="display:inline;">
-                    <button type="submit" class="btn btn-danger">Deletar</button>
-                </form>
-                {% if user.is_active %}
-                <form method="POST" action="{{ url_for('auth.deactivate_user', id=user.id) }}" style="display:inline;">
-                    <button type="submit" class="btn btn-warning">Desativar</button>
-                </form>
-                {% else %}
-                <form method="POST" action="{{ url_for('auth.activate_user', id=user.id) }}" style="display:inline;">
-                    <button type="submit" class="btn btn-success">Ativar</button>
-                </form>
-                {% endif %}
-                <a href="{{ url_for('auth.edit_user', id=user.id) }}" class="btn btn-info">Editar</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <div class="row">
+        
+        <!-- Card: Criar Novo Funcionário -->
+        <section class="col-lg-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="h5 card-title">Criar Novo Funcionário</h2>
+                    
+                    <form method="POST" action="{{ url_for('auth.admin') }}">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Nome de Usuário</label>
+                            <input type="text" id="username" name="username" placeholder="Digite o nome do usuário"
+                                class="form-control" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Senha</label>
+                            <input type="password" id="password" name="password" placeholder="Digite a senha"
+                                class="form-control" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="cargo" class="form-label">Cargo</label>
+                            <input type="text" id="cargo" name="cargo" placeholder="Digite o cargo"
+                                class="form-control" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary w-100">Criar Funcionário</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Card: Lista de Funcionários -->
+        <section class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="h5 card-title">Funcionários Existentes</h2>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Usuário</th>
+                                    <th>Cargo</th>
+                                    <th>Status</th>
+                                    <th class="text-center">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for user in users %}
+                                <tr>
+                                    <td>{{ user.id }}</td>
+                                    <td>{{ user.username }}</td>
+                                    <td>{{ user.cargo }}</td>
+                                    <td>
+                                        {% if user.is_active %}
+                                        <span class="badge bg-success">Ativo</span>
+                                        {% else %}
+                                        <span class="badge bg-danger">Inativo</span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-center">
+                                        {% if user.username != 'admin' %}
+                                        <div class="btn-group" role="group">
+                                            <!-- Botão Deletar -->
+                                            <form method="POST" action="{{ url_for('auth.delete_user', id=user.id) }}" class="d-inline">
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="bi bi-trash"></i> Deletar
+                                                </button>
+                                            </form>
+
+                                            <!-- Botão Desativar -->
+                                            {% if user.is_active %}
+                                            <form method="POST" action="{{ url_for('auth.deactivate_user', id=user.id) }}" class="d-inline">
+                                                <button type="submit" class="btn btn-warning btn-sm">
+                                                    <i class="bi bi-lock"></i> Desativar
+                                                </button>
+                                            </form>
+                                            {% else %}
+                                            <form method="POST" action="{{ url_for('auth.activate_user', id=user.id) }}" class="d-inline">
+                                                <button type="submit" class="btn btn-success btn-sm">
+                                                    <i class="bi bi-unlock"></i> Ativar
+                                                </button>
+                                            </form>
+                                            {% endif %}
+
+                                            <!-- Botão Editar -->
+                                            <a href="{{ url_for('auth.edit_user', id=user.id) }}" class="btn btn-primary btn-sm">
+                                                <i class="bi bi-pencil-square"></i> Editar
+                                            </a>
+                                        </div>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>
 {% endblock %}

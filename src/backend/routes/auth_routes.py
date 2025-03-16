@@ -46,14 +46,15 @@ def admin():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
+        cargo = request.form.get('cargo')
         if User.query.filter_by(username=username).first():
             flash('Usuário já existe. Escolha outro nome.')
             return redirect(url_for('auth.admin'))
-        user = User(username=username)
+        user = User(username=username, cargo=cargo)
         user.set_password(password)
         db.session.add(user)
         db.session.commit()
-        flash('Usuário criado com sucesso!')
+        flash('Funcionário criado com sucesso!')
         return redirect(url_for('auth.admin'))
 
     users = User.query.all()
@@ -69,7 +70,7 @@ def delete_user(id):
     user = User.query.get_or_404(id)
     db.session.delete(user)
     db.session.commit()
-    flash('Usuário deletado com sucesso!')
+    flash('Funcionário deletado com sucesso!')
     return redirect(url_for('auth.admin'))
 
 @auth.route('/admin/deactivate/<int:id>', methods=['POST'])
@@ -82,7 +83,7 @@ def deactivate_user(id):
     user = User.query.get_or_404(id)
     user.deactivate()
     db.session.commit()
-    flash('Usuário desativado com sucesso!')
+    flash('Funcionário desativado com sucesso!')
     return redirect(url_for('auth.admin'))
 
 @auth.route('/admin/activate/<int:id>', methods=['POST'])
@@ -95,7 +96,7 @@ def activate_user(id):
     user = User.query.get_or_404(id)
     user.activate()
     db.session.commit()
-    flash('Usuário ativado com sucesso!')
+    flash('Funcionário ativado com sucesso!')
     return redirect(url_for('auth.admin'))
 
 @auth.route('/admin/edit/<int:id>', methods=['GET', 'POST'])
@@ -109,14 +110,16 @@ def edit_user(id):
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
+        cargo = request.form.get('cargo')
         if User.query.filter_by(username=username).first() and username != user.username:
             flash('Usuário já existe. Escolha outro nome.')
             return redirect(url_for('auth.edit_user', id=id))
         user.username = username
+        user.cargo = cargo
         if password:
             user.set_password(password)
         db.session.commit()
-        flash('Usuário atualizado com sucesso!')
+        flash('Funcionário atualizado com sucesso!')
         return redirect(url_for('auth.admin'))
     return render_template('edit_user.html', user=user)
 

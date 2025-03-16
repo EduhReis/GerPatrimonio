@@ -1,18 +1,42 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="login-container">
-    <img src="{{ url_for('static', filename='img/propriedade.png') }}" alt="GerPatrimônio" class="login-logo">
 
-    <h2>Login</h2>
-    <form method="POST" action="{{ url_for('auth.login') }}">
-        <label for="username">Usuário</label>
-        <input type="text" id="username" name="username" required>
+<!-- Centraliza o conteúdo -->
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%;">
+        
+        <!-- Imagem -->
+        <div class="text-center mb-3">
+            <img src="{{ url_for('static', filename='img/propriedade.png') }}" alt="GerPatrimônio" class="img-fluid" style="max-height: 150px;">
+        </div>
 
-        <label for="password">Senha</label>
-        <input type="password" id="password" name="password" required>
+        <!-- Título -->
+        <h3 class="text-center mb-4">Login</h3>
 
-        <button type="submit">Entrar</button>
-    </form>
+        <!-- Formulário -->
+        <form method="POST" action="{{ url_for('auth.login') }}">
+
+            <!-- Campo Usuário -->
+            <div class="mb-3">
+                <label for="username" class="form-label">Usuário</label>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Digite seu usuário" required>
+            </div>
+
+            <!-- Campo Senha -->
+            <div class="mb-3">
+                <label for="password" class="form-label">Senha</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Digite sua senha" required>
+            </div>
+
+            <!-- Botão Entrar -->
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-box-arrow-in-right"></i> Entrar
+                </button>
+            </div>
+        </form>
+    </div>
 </div>
+
 {% endblock %}

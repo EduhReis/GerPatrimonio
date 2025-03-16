@@ -2,7 +2,34 @@
 
 {% block content %}
 <h2>Lista de Patrimônios</h2>
+
+<!-- Formulário de Filtro -->
+<form method="GET" action="{{ url_for('main.listagem', username=current_user.username) }}" class="mb-3">
+    <div class="row">
+        <div class="col-md-4">
+            <input type="text" name="nome" class="form-control" placeholder="Nome do Patrimônio" value="{{ request.args.get('nome', '') }}">
+        </div>
+        <div class="col-md-4">
+            <input type="text" name="categoria" class="form-control" placeholder="Categoria" value="{{ request.args.get('categoria', '') }}">
+        </div>
+        <div class="col-md-4">
+            <select name="status" class="form-control">
+                <option value="">Todos os Status</option>
+                <option value="Disponível" {% if request.args.get('status') == 'Disponível' %}selected{% endif %}>Disponível</option>
+                <option value="Indisponível" {% if request.args.get('status') == 'Indisponível' %}selected{% endif %}>Indisponível</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+        </div>
+    </div>
+</form>
+
+{% if current_user.cargo in ['Admin', 'Supervisor'] %}
 <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#cadastroModal">Cadastrar Patrimônio</button>
+{% endif %}
 
 <table id="patrimonioTable" class="table table-striped">
     <thead>
@@ -10,6 +37,7 @@
             <th>Nome</th>
             <th>Categoria</th>
             <th>Status</th>
+            <th>Versão</th>
             <th>Ações</th>
         </tr>
     </thead>
@@ -19,11 +47,14 @@
             <td>{{ patrimonio.nome }}</td>
             <td>{{ patrimonio.categoria }}</td>
             <td>{{ patrimonio.status }}</td>
+            <td>{{ patrimonio.versao }}</td>
             <td>
+                {% if current_user.cargo in ['Admin', 'Supervisor'] %}
                 <a href="{{ url_for('main.editar', username=current_user.username, id=patrimonio.id) }}" class="btn btn-warning">Editar</a>
                 <form method="POST" action="{{ url_for('main.apagar', username=current_user.username, id=patrimonio.id) }}" style="display:inline;">
                     <button type="submit" class="btn btn-danger">Apagar</button>
                 </form>
+                {% endif %}
             </td>
         </tr>
         {% endfor %}
