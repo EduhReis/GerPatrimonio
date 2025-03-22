@@ -29,10 +29,15 @@ class User(db.Model, UserMixin):
     def is_active(self):
         return self.active
 
+class Categoria(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(50), unique=True, nullable=False)
+
 class Patrimonio(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(50), nullable=False)
-    categoria = db.Column(db.String(20))
+    categoria_id = db.Column(db.Integer, db.ForeignKey('categoria.id'), nullable=False)
+    categoria = db.relationship('Categoria', backref=db.backref('patrimonios', lazy=True))
     status = db.Column(db.String(20))
     versao = db.Column(db.Integer, nullable=False, default=1)  # Novo campo de versão
     funcionario_id = db.Column(db.Integer, db.ForeignKey('funcionario.id'), nullable=True)

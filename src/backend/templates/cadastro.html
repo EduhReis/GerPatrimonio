@@ -8,12 +8,19 @@
         <input type="text" class="form-control" id="nome" name="nome" required>
     </div>
     <div class="mb-3">
-        <label for="categoria" class="form-label">Categoria</label>
-        <input type="text" class="form-control" id="categoria" name="categoria" required>
+        <label for="categoria_id" class="form-label">Categoria</label>
+        <select class="form-control" id="categoria_id" name="categoria_id" required>
+            {% for categoria in categorias %}
+            <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
+            {% endfor %}
+        </select>
     </div>
     <div class="mb-3">
         <label for="status" class="form-label">Status</label>
-        <input type="text" class="form-control" id="status" name="status" required>
+        <select type="text" class="form-control" id="status" name="status">
+            <option value="Disponível">Disponível</option>
+            <option value="Indisponível">Indisponível</option>
+        </select>
     </div>
     <button type="submit" class="btn btn-primary">Cadastrar</button>
 </form>

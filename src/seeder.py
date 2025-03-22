@@ -1,6 +1,6 @@
 import os
 from backend import create_app
-from backend.models import db, User, Patrimonio, Funcionario
+from backend.models import db, User, Patrimonio, Funcionario, Categoria
 
 app = create_app()
 
@@ -19,9 +19,15 @@ with app.app_context():
     db.session.add(funcionario1)
     db.session.add(funcionario2)
 
+    # Criar algumas categorias
+    categoria1 = Categoria(nome='Eletrônicos')
+    categoria2 = Categoria(nome='Móveis')
+    db.session.add(categoria1)
+    db.session.add(categoria2)
+
     # Criar alguns patrimônios
-    patrimonio1 = Patrimonio(nome='Computador', categoria='Eletrônicos', status='Ativo', funcionario=funcionario1)
-    patrimonio2 = Patrimonio(nome='Mesa', categoria='Móveis', status='Inativo', funcionario=funcionario2)
+    patrimonio1 = Patrimonio(nome='Computador', categoria=categoria1, status='Ativo', funcionario=funcionario1)
+    patrimonio2 = Patrimonio(nome='Mesa', categoria=categoria2, status='Inativo', funcionario=funcionario2)
     db.session.add(patrimonio1)
     db.session.add(patrimonio2)
 

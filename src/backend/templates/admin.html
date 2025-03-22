@@ -35,8 +35,10 @@
                         
                         <div class="mb-3">
                             <label for="cargo" class="form-label">Cargo</label>
-                            <input type="text" id="cargo" name="cargo" placeholder="Digite o cargo"
-                                class="form-control" required>
+                            <select id="cargo" name="cargo" class="form-control" required>
+                                <option value="Supervisor">Supervisor</option>
+                                <option value="Funcionário">Funcionário</option>
+                            </select>
                         </div>
                         
                         <button type="submit" class="btn btn-primary w-100">Criar Funcionário</button>

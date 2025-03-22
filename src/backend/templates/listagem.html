@@ -29,6 +29,7 @@
 
 {% if current_user.cargo in ['Admin', 'Supervisor'] %}
 <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#cadastroModal">Cadastrar Patrimônio</button>
+<button class="btn btn-secondary mb-3" data-bs-toggle="modal" data-bs-target="#categoriaModal">Criar Categoria</button>
 {% endif %}
 
 <table id="patrimonioTable" class="table table-striped">
@@ -45,7 +46,7 @@
         {% for patrimonio in patrimonios %}
         <tr>
             <td>{{ patrimonio.nome }}</td>
-            <td>{{ patrimonio.categoria }}</td>
+            <td>{{ patrimonio.categoria.nome }}</td>
             <td>{{ patrimonio.status }}</td>
             <td>{{ patrimonio.versao }}</td>
             <td>
@@ -61,7 +62,7 @@
     </tbody>
 </table>
 
-<!-- Modal -->
+<!-- Modal de Cadastro de Patrimônio -->
 <div class="modal fade" id="cadastroModal" tabindex="-1" aria-labelledby="cadastroModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -76,8 +77,12 @@
                         <input type="text" class="form-control" id="nome" name="nome" required>
                     </div>
                     <div class="mb-3">
-                        <label for="categoria" class="form-label">Categoria</label>
-                        <input type="text" class="form-control" id="categoria" name="categoria">
+                        <label for="categoria_id" class="form-label">Categoria</label>
+                        <select class="form-control" id="categoria_id" name="categoria_id" required>
+                            {% for categoria in categorias %}
+                            <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="status" class="form-label">Status</label>
@@ -85,6 +90,30 @@
                             <option value="Disponível">Disponível</option>
                             <option value="Indisponível">Indisponível</option>
                         </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Criação de Categoria -->
+<div class="modal fade" id="categoriaModal" tabindex="-1" aria-labelledby="categoriaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="categoriaModalLabel">Criar Categoria</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" action="{{ url_for('main.categorias', username=current_user.username) }}">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="nome" class="form-label">Nome da Categoria</label>
+                        <input type="text" class="form-control" id="nome" name="nome" required>
                     </div>
                 </div>
                 <div class="modal-footer">
