@@ -10,8 +10,16 @@
             <input type="text" name="nome" class="form-control" placeholder="Nome do Patrimônio" value="{{ request.args.get('nome', '') }}">
         </div>
         <div class="col-md-4">
-            <input type="text" name="categoria" class="form-control" placeholder="Categoria" value="{{ request.args.get('categoria', '') }}">
+            <select name="categoria" class="form-control">
+                <option value="">Todas as Categorias</option>
+                {% for categoria in categorias %}
+                    <option value="{{ categoria.nome }}" {% if request.args.get('categoria') == categoria.nome %}selected{% endif %}>
+                        {{ categoria.nome }}
+                    </option>
+                {% endfor %}
+            </select>
         </div>
+        
         <div class="col-md-4">
             <select name="status" class="form-control">
                 <option value="">Todos os Status</option>
@@ -29,7 +37,9 @@
 
 {% if current_user.cargo in ['Admin', 'Supervisor'] %}
 <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#cadastroModal">Cadastrar Patrimônio</button>
-<button class="btn btn-secondary mb-3" data-bs-toggle="modal" data-bs-target="#categoriaModal">Criar Categoria</button>
+<a href="{{ url_for('main.categorias', username=current_user.username) }}" class="btn btn-secondary mb-3">
+    Criar Categoria
+</a>
 {% endif %}
 
 <table id="patrimonioTable" class="table table-striped">
@@ -101,27 +111,4 @@
     </div>
 </div>
 
-<!-- Modal de Criação de Categoria -->
-<div class="modal fade" id="categoriaModal" tabindex="-1" aria-labelledby="categoriaModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="categoriaModalLabel">Criar Categoria</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form method="POST" action="{{ url_for('main.categorias', username=current_user.username) }}">
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="nome" class="form-label">Nome da Categoria</label>
-                        <input type="text" class="form-control" id="nome" name="nome" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Salvar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 {% endblock %}

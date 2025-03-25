@@ -50,7 +50,7 @@ def cadastro_modal(username):
 def listagem(username):
     if username != current_user.username:
         flash('Acesso restrito.')
-        return redirect(url_for('main.listagem', username=current_user.username))
+        return redirect(url_for('main.index', username=current_user.username))
     
     # Aplicar filtros
     query = Patrimonio.query
@@ -67,7 +67,7 @@ def listagem(username):
     
     patrimonios = query.all()
     categorias = Categoria.query.all()
-    return render_template('listagem.html', patrimonios=patrimonios, categorias=categorias)
+    return render_template('index.html', patrimonios=patrimonios, categorias=categorias)
 
 @main.route('/<username>/editar/<int:id>', methods=['GET', 'POST'])
 @login_required
