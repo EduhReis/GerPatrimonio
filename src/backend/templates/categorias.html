@@ -1,29 +1,158 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <h2>Lista de Categorias</h2>
-<form method="POST" action="{{ url_for('main.categorias', username=current_user.username) }}">
-    <div class="mb-3">
-        <label for="nome" class="form-label">Nome da Categoria</label>
-        <input type="text" class="form-control" id="nome" name="nome" required>
-    </div>
-    <button type="submit" class="btn btn-primary">Criar Categoria</button>
-</form>
 
+
+<!-- Botão para abrir a modal de criação -->
+<button
+  class="btn btn-primary mb-3"
+  data-bs-toggle="modal"
+  data-bs-target="#criarCategoriaModal"
+>
+  Criar Categoria
+</button>
+
+<!-- Tabela de categorias -->
 <table class="table table-striped mt-4">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for categoria in categorias %}
-        <tr>
-            <td>{{ categoria.id }}</td>
-            <td>{{ categoria.nome }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for categoria in categorias %}
+    <tr>
+      <td>{{ categoria.id }}</td>
+      <td>{{ categoria.nome }}</td>
+      <td>
+        <!-- Botão Editar -->
+        <button
+          class="btn btn-warning btn-sm"
+          data-bs-toggle="modal"
+          data-bs-target="#editarCategoriaModal"
+          data-id="{{ categoria.id }}"
+          data-nome="{{ categoria.nome }}"
+        >
+          Editar
+        </button>
+
+        <!-- Botão Remover -->
+        <form
+          method="POST"
+          action="{{ url_for('main.remover_categoria', username=current_user.username, id=categoria.id) }}"
+          style="display: inline"
+        >
+          <button type="submit" class="btn btn-danger btn-sm">Remover</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
 </table>
+
+<!-- Modal para criar categoria -->
+<div
+  class="modal fade"
+  id="criarCategoriaModal"
+  tabindex="-1"
+  aria-labelledby="criarCategoriaModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="criarCategoriaModalLabel">
+          Criar Categoria
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form
+        method="POST"
+        action="{{ url_for('main.categorias', username=current_user.username) }}"
+      >
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="nome" class="form-label">Nome da Categoria</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nome"
+              name="nome"
+              required
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cancelar
+          </button>
+          <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para editar categoria -->
+<div
+  class="modal fade"
+  id="editarCategoriaModal"
+  tabindex="-1"
+  aria-labelledby="editarCategoriaModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editarCategoriaModalLabel">
+          Editar Categoria
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form
+        method="POST"
+        action="{{ url_for('main.editar_categoria', username=current_user.username, id=0) }}"
+        id="editarCategoriaForm"
+      >
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="editarNome" class="form-label">Nome da Categoria</label>
+            <input
+              type="text"
+              class="form-control"
+              id="editarNome"
+              name="nome"
+              required
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cancelar
+          </button>
+          <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock %}

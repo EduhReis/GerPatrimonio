@@ -39,7 +39,8 @@ class Patrimonio(db.Model):
     categoria_id = db.Column(db.Integer, db.ForeignKey('categoria.id'), nullable=False)
     categoria = db.relationship('Categoria', backref=db.backref('patrimonios', lazy=True))
     status = db.Column(db.String(20))
-    versao = db.Column(db.Integer, nullable=False, default=1)  # Novo campo de versão
+    versao = db.Column(db.Integer, nullable=False, default=1)
+    ativo = db.Column(db.Boolean, default=True)  # Indica se a versão está ativa
     funcionario_id = db.Column(db.Integer, db.ForeignKey('funcionario.id'), nullable=True)
     funcionario = db.relationship('Funcionario', back_populates='patrimonios')
 

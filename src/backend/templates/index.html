@@ -61,9 +61,15 @@
             <td>{{ patrimonio.versao }}</td>
             <td>
                 {% if current_user.cargo in ['Admin', 'Supervisor'] %}
-                <a href="{{ url_for('main.editar', username=current_user.username, id=patrimonio.id) }}" class="btn btn-warning">Editar</a>
+                <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editarModal" 
+                        data-id="{{ patrimonio.id }}" 
+                        data-nome="{{ patrimonio.nome }}" 
+                        data-categoria="{{ patrimonio.categoria_id }}" 
+                        data-status="{{ patrimonio.status }}">
+                    Editar
+                </button>
                 <form method="POST" action="{{ url_for('main.apagar', username=current_user.username, id=patrimonio.id) }}" style="display:inline;">
-                    <button type="submit" class="btn btn-danger">Apagar</button>
+                    <button type="submit" class="btn btn-danger btn-sm">Apagar</button>
                 </form>
                 {% endif %}
             </td>
@@ -111,4 +117,65 @@
     </div>
 </div>
 
+<!-- Modal de Edição de Patrimônio -->
+<div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editarModalLabel">Editar Patrimônio</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" action="{{ url_for('main.editar', username=current_user.username, id=0) }}" id="editarForm">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="editarNome" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="editarNome" name="nome" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editarCategoria" class="form-label">Categoria</label>
+                        <select class="form-control" id="editarCategoria" name="categoria_id" required>
+                            {% for categoria in categorias %}
+                            <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editarStatus" class="form-label">Status</label>
+                        <select class="form-control" id="editarStatus" name="status">
+                            <option value="Disponível">Disponível</option>
+                            <option value="Indisponível">Indisponível</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const editarModal = document.getElementById('editarModal');
+    editarModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget; // Botão que acionou a modal
+        const id = button.getAttribute('data-id');
+        const nome = button.getAttribute('data-nome');
+        const categoria = button.getAttribute('data-categoria');
+        const status = button.getAttribute('data-status');
+
+        // Preencher os campos da modal
+        const form = editarModal.querySelector('#editarForm');
+        form.action = `/{{ current_user.username }}/editar/${id}`; // Atualiza a URL com o ID correto
+        editarModal.querySelector('#editarNome').value = nome;
+        editarModal.querySelector('#editarCategoria').value = categoria;
+        editarModal.querySelector('#editarStatus').value = status;
+    });
+});
+</script>
 {% endblock %}
